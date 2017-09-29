@@ -1,0 +1,47 @@
+﻿@using FileTransferMonitor.App_View 
+@model VMUploadFile
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*@Html.AntiForgeryToken()*@
+<table class="table table-striped table-hover table-responsive table-condensed">
+    <tr>
+        <th class="col-sm-7">
+            File Name
+        </th> 
+        <th class="col-sm-1">
+            Size Mb
+        </th>
+        <th class="col-sm-4">
+           Buttons action
+        </th>
+    </tr>
+
+@foreach (var item in Model.FilesUploadNote)
+{
+    <tr>
+        <td>
+            @item.Name
+        </td>
+        <td>
+            @item.Size
+        </td>
+        <td class="">
+            <input type="button" class="btn-success" name="details" data-index="@item.Id" title="about me" value="Details" />
+            <input type="button" class="btn-danger" name="delete" data-index="@item.Id" title="don't kill me" value="Delete" />
+            <input type="button" class="btn-warning" name="edit" data-index="@item.Id" data-name="@item.Name" title="fixing" value="Edit" />
+            <input type="button" class="btn-info" name="download" data-index="@item.Id" data-name="@item.Name"  title="get content" value="Download" />
+        </td>
+    </tr>
+}
+</table>
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.pageInfo, i => Url.Action("Index", new { PageNumber = i }))
+</div>
+<br />
+@*<a href="/FilesViewAndAction/Download/15" download="">Load file</a>*@

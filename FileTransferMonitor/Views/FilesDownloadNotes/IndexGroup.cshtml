@@ -1,0 +1,48 @@
+﻿@model IQueryable<IGrouping<string, FileTransferMonitor.Models.FilesDownloadNote>>
+@{
+    ViewBag.Title = "IndexGroup";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IndexGroup</title>
+</head>
+<body>
+    <label class="span_report">.</label>
+    <label class="label_report">Create report - click ~~></label>
+    <button type="button" id="Create-report-excell-file" class="btn-default">
+        <img class="img_excell" src="data:image/png;base64,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" />
+    </button>
+        
+    @foreach (IGrouping<string, FileTransferMonitor.Models.FilesDownloadNote> item in Model)
+    {
+        <h4 style="text-align:center;text-decoration:underline;background-color:silver;"><text style="color:blue;"> User operator: </text>@item.Key</h4>
+
+        IEnumerable<IGrouping<string, FileTransferMonitor.Models.FilesDownloadNote>> itemgroup = item.GroupBy(g => g.FileOperations);
+        foreach (IGrouping<string, FileTransferMonitor.Models.FilesDownloadNote> ig in itemgroup)
+        {
+            <ul class="btn-default">
+                <text style="color:dodgerblue;margin-left:70px; text-decoration:underline;"> Files operations:</text> @ig.Key
+
+                @foreach (FileTransferMonitor.Models.FilesDownloadNote i in ig)
+                {
+                    <li><text style="color:chocolate;">Datetime operation :</text>  @i.DateTimeDownload </li>
+                    <li><text style="color:chocolate;">File name :</text> @i.FilesUploadNote.Name</li>
+                    <li>
+                        <text style="color:chocolate;">File size Mb :</text> @i.FilesUploadNote.Size
+                        <ul>
+                            <li>
+                                <text style="color:coral;">User upload file : </text>@i.FilesUploadNote.UserName
+                                <text style="color:coral; margin-left: 12px;">DateTime : </text>@i.FilesUploadNote.DataTimeUpload
+                            </li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+        }
+    }
+</body>
+</html>

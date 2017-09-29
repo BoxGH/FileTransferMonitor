@@ -1,0 +1,78 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.detail {
+    position: absolute;
+    color: InfoText;
+    background-color: darkgray;
+    padding: 4px 7px 2px 5px;
+    margin: 4px 7px 2px 5px;
+    border: 1px solid black;
+}
+
+.edit {
+    position: absolute;
+    color: ButtonText;
+    background-color: darkgray;
+    padding: 4px 7px 2px 5px;
+    margin: 4px 7px 2px 5px;
+    border: 1px solid black;
+}
+
+.b_edit {
+    color: red;
+}
+
+.b_close {
+    color: mintcream;
+    left: 30%;
+}
+
+.textfield {
+    width: 100%;
+    color: crimson;
+    padding: 4px 7px 2px 5px;
+    margin: 4px 7px 2px 5px;
+}
+
+.label_report {
+    color: seagreen;
+    font-size: 23px;
+    margin-right: 12px;   
+}
+
+.button_excell {
+    max-width: 70px;
+    max-height: 70px;
+}
+
+.img_excell {
+    width: 50px;
+    height: 50px;
+}
+.span_report{
+    color:transparent;
+    width:55%;
+}

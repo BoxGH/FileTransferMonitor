@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "FilesToServer";
+}
+
+<h4>FilesToServer</h4>
+<style type="text/css">
+    .dz-max-files-reached {
+        background-color: red;
+    }
+    #dropZone {
+        background: gray;
+        border: black dashed 3px;
+        width: 200px;
+        padding: 50px;
+        text-align: center;
+        color: white;
+    }
+</style>
+<h5 class="alert-danger">@ViewBag.Info </h5>
+<h6 class="alert-info">Restrictions: File size - <b class="alert-warning">11 Mb</b>, Number of files - <b class="alert-warning">11 pcs</b></h6>
+<div class="jumbotron">
+    <form action="~/LoadFiles/FilesToServer" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
+        <div class="fallback">
+            <input name="file" type="file" multiple />
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        //File Upload response from the server
+        Dropzone.options.dropzoneForm = {
+            maxFiles: 11,
+            maxFilesize: 11,
+            init: function ()
+            {
+                this.on("maxfilesexceeded", function (data) {
+                    var res = eval('(' + data.xhr.responseText + ')');
+                });
+                this.on("addedfile", function (file) {
+                    // Create the remove button
+                    var removeButton = Dropzone.createElement("<button>Remove the file</button>");
+                    // Capture the Dropzone instance as closure.
+                    var _this = this;
+
+                    // Listen to the click event
+                    removeButton.addEventListener("click", function (e) {
+                        // Make sure the button click doesn't submit the form:
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Remove the file preview.
+                        _this.removeFile(file);
+                        // If you want to the delete the file on the server as well,
+                        // you can do the AJAX request here.
+                    });
+                    // Add the button to the file preview element.
+                    file.previewElement.appendChild(removeButton);
+                });
+                this.on("complete", function (data) {
+                    //var text_info = document.createTextNode(JSON.parse(data.xhr.responseText).Message);
+                    var el_info = document.createElement('i');
+                    el_info.innerText = JSON.parse(data.xhr.responseText).Message;
+                    //el_info.appendChild(text_info);
+                    el_info.style.color = 'red';
+                    data.previewTemplate.appendChild(el_info);
+                });
+            }
+        };
+</script>
+}
